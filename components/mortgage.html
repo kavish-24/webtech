@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mortgage Calculator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="../style/stylem.css">
+</head>
+<body>
+    <header class="navbar">
+        <h1>EstateEdge</h1>
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="properties.html">Properties</a>
+            <a href="mortgage.html">Mortgage</a>
+            <a href="about.html">About Us</a>
+            <a href="property_details.html">Property Details</a>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Mortgage Calculator</h1>
+        <form id="mortgage-form">
+            <div class="form-group">
+                <label for="price">Property Price ($)</label>
+                <input type="number" id="price" required>
+            </div>
+            <div class="form-group">
+                <label for="downpayment">Down Payment ($)</label>
+                <input type="number" id="downpayment" required>
+            </div>
+            <div class="form-group">
+                <label for="interest">Interest Rate (%)</label>
+                <input type="number" id="interest" step="0.01" required>
+            </div>
+            <div class="form-group">
+                <label for="years">Loan Term (Years)</label>
+                <input type="number" id="years" required>
+            </div>
+            <button type="submit">Calculate</button>
+        </form>
+
+        <div class="results-container">
+            <div class="result-card">
+                <h3>Monthly Payment</h3>
+                <div class="result-value" id="monthly-payment">-</div>
+            </div>
+            <div class="result-card">
+                <h3>Total Interest</h3>
+                <div class="result-value" id="total-interest">-</div>
+            </div>
+            <div class="result-card">
+                <h3>Total Payment</h3>
+                <div class="result-value" id="total-payment">-</div>
+            </div>
+        </div>
+
+        <div id="amortization-chart">
+            <canvas id="chart"></canvas>
+        </div>
+
+        <div class="amortization-table">
+            <h3>Amortization Schedule</h3>
+            <table id="schedule">
+                <thead>
+                    <tr>
+                        <th>Month</th>
+                        <th>Principal</th>
+                        <th>Interest</th>
+                        <th>Balance</th>
+                    </tr>
+                </thead>
+                <tbody id="schedule-body">
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Real Estate Co. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById('mortgage-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const price = parseFloat(document.getElementById('price').value);
+            const downPayment = parseFloat(document.getElementById('downpayment').value);
+            const interestRate = parseFloat(document.getElementById('interest').value) / 100 / 12;
+            const loanTerm = parseFloat(document.getElementById('years').value) * 12;
+
+            const loanAmount = price - downPayment;
+            const monthlyPayment = calculateMonthlyPayment(loanAmount, interestRate, loanTerm);
+            const totalPayment = monthlyPayment * loanTerm;
+            const totalInterest = totalPayment - loanAmount;
+
+            // Update results
+            document.getElementById('monthly-payment').textContent = `$${monthlyPayment.toFixed(2)}`;
+            document.getElementById('total-interest').textContent = `$${totalInterest.toFixed(2)}`;
+            document.getElementById('total-payment').textContent = `$${totalPayment.toFixed(2)}`;
+
+            // Generate amortization schedule
+            generateAmortizationSchedule(loanAmount, interestRate, monthlyPayment, loanTerm);
+            
+            // Update chart
+            updateChart(loanAmount, totalInterest);
+        });
+
+        function calculateMonthlyPayment(principal, monthlyRate, months) {
+            if (monthlyRate === 0) return principal / months;
+            return principal * monthlyRate / (1 - Math.pow(1 + monthlyRate, -months));
+        }
+
+        function generateAmortizationSchedule(principal, monthlyRate, monthlyPayment, months) {
+            let balance = principal;
+            const scheduleBody = document.getElementById('schedule-body');
+            scheduleBody.innerHTML = '';
+
+            for (let month = 1; month <= months; month++) {
+                const interest = balance * monthlyRate;
+                const principalPayment = monthlyPayment - interest;
+                balance -= principalPayment;
+
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${month}</td>
+                    <td>$${principalPayment.toFixed(2)}</td>
+                    <td>$${interest.toFixed(2)}</td>
+                    <td>$${balance.toFixed(2)}</td>
+                `;
+                scheduleBody.appendChild(row);
+            }
+        }
+
+        let myChart;
+        function updateChart(principal, totalInterest) {
+            const ctx = document.getElementById('chart').getContext('2d');
+            if (myChart) myChart.destroy();
+
+            myChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Principal', 'Interest'],
+                    datasets: [{
+                        data: [principal, totalInterest],
+                        backgroundColor: ['#3498db', '#e74c3c'],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { position: 'bottom' },
+                        tooltip: { enabled: true }
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>

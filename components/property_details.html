@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List Your Property - EstateEdge</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="../style/styles2.css"> 
+</head>
+<body>
+  <header class="navbar">
+    <h1>EstateEdge</h1>
+    <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="properties.html">Properties</a>
+        <a href="mortgage.html">Mortgage</a>
+        <a href="about.html">About Us</a>
+        <a href="property_details.html">Property Details</a>
+    </nav>
+</header>
+    <div class="listing-container">
+        <h2 class="form-title">List Your Property</h2>
+        <form id="propertyForm" action="/submit-property" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="propertyType">Property Type</label>
+                <select id="propertyType" name="propertyType" required>
+                    <option value="">Select Property Type</option>
+                    <option value="apartment">Apartment</option>
+                    <option value="house">House</option>
+                    <option value="villa">Villa</option>
+                    <option value="commercial">Commercial</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Listing Type</label>
+                <div class="radio-group">
+                    <label class="radio-option">
+                        <input type="radio" name="listingType" value="sale" required> 
+                        For Sale
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="listingType" value="rent"> 
+                        For Rent
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="price">Price ($)</label>
+                    <input type="number" id="price" name="price" required>
+                </div>
+                <div class="form-group">
+                    <label for="location">Location</label>
+                    <input type="text" id="location" name="location" required>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="bedrooms">Bedrooms</label>
+                    <input type="number" id="bedrooms" name="bedrooms" min="0" required>
+                </div>
+                <div class="form-group">
+                    <label for="bathrooms">Bathrooms</label>
+                    <input type="number" id="bathrooms" name="bathrooms" min="0" required>
+                </div>
+                <div class="form-group">
+                    <label for="area">Area (sq ft)</label>
+                    <input type="number" id="area" name="area" min="0" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Property Description</label>
+                <textarea id="description" name="description" rows="5" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Upload Images (Max 10)</label>
+                <div class="image-upload" onclick="document.getElementById('images').click()">
+                    Click to upload photos or drag and drop
+                </div>
+                <input type="file" id="images" name="images" accept="image/*" multiple hidden>
+                <div id="image-preview"></div>
+            </div>
+
+            <button type="submit" class="submit-btn">List Property</button>
+        </form>
+    </div>
+
+    <footer>
+        <p>© 2025 EstateEdge. All rights reserved.</p>
+        <div class="social-links">
+            <!-- Social media links from previous code -->
+        </div>
+    </footer>
+
+    <script>
+        // Image preview functionality
+        const imageInput = document.getElementById('images');
+        const previewContainer = document.getElementById('image-preview');
+
+        imageInput.addEventListener('change', function() {
+            previewContainer.innerHTML = '';
+            const files = Array.from(this.files).slice(0, 10);
+            
+            files.forEach(file => {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.classList.add('preview-image');
+                    previewContainer.appendChild(img);
+                }
+                reader.readAsDataURL(file);
+            });
+        });
+
+        // Form validation
+        document.getElementById('propertyForm').addEventListener('submit', function(e) {
+            const price = document.getElementById('price').value;
+            if (price < 100) {
+                alert('Please enter a valid price');
+                e.preventDefault();
+            }
+        });
+    </script>
+</body>
+</html>

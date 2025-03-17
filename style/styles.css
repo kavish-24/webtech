@@ -1,0 +1,259 @@
+
+body {
+  font-family: 'Roboto', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+  color: #333;
+  line-height: 1.6;
+}
+
+/** Navbar Styles */
+.navbar {
+  background: #2c3e50;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100; /* Above content but below popups */
+}
+.navbar h1 {
+  color: #fff;
+  font-size: 1.8rem;
+}
+.nav-links {
+  display: flex;
+  gap: 2rem;
+}
+.nav-links a {
+  color: #ecf0f1;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+.nav-links a:hover {
+  color: #3498db;
+}
+
+/** Hero Section Styles */
+.hero {
+  background: url('https://images.pexels.com/photos/53610/large-home-residential-house-architecture-53610.jpeg') center/cover no-repeat;
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+  z-index: 50; /* Below navbar */
+}
+.hero h2 {
+  font-size: 36px;
+  margin: 0;
+}
+.hero p {
+  font-size: 20px;
+  font-weight: 300;
+  margin: 10px 0 20px;
+}
+.search-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 15px;
+  border-radius: 10px;
+  max-width: 700px;
+  width: 90%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.3s ease;
+}
+.search-bar:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+.search-bar input,
+.search-bar select,
+.search-bar button {
+  padding: 12px;
+  border: none;
+  font-size: 16px;
+  border-radius: 5px;
+  margin: 5px;
+}
+.search-bar input,
+.search-bar select {
+  flex: 1;
+  min-width: 150px;
+}
+.search-bar button {
+  background-color: #ff6600;
+  color: #fff;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+.search-bar button:hover {
+  background-color: #e65c00;
+}
+
+/** Real Estate Gallery Styles */
+.real-estate-gallery {
+  padding: 50px 5%;
+  background-color: #fff;
+  z-index: 10; /* Below hero and navbar */
+}
+.real-estate-gallery h2 {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 30px;
+  color: #2c3e50;
+}
+.home-card {
+  position: relative;
+  margin: 10px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+.home-card:hover {
+  transform: scale(1.02);
+}
+.home-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+.home-preview {
+  padding: 15px;
+}
+.home-preview h4 {
+  margin: 0 0 10px 0;
+  font-size: 18px;
+}
+.home-preview p {
+  margin: 5px 0;
+  color: #666;
+}
+.home-details {
+  display: none;
+  padding: 15px;
+  z-index: 100000; /* Above everything else */
+}
+.home-details p {
+  margin: 5px 0;
+  color: #666;
+}
+.home-card.expanded {
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  z-index: 10001 !important; /* Highest z-index for popup */
+  width: 90% !important;
+  max-width: 600px !important;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4) !important;
+  background: white !important;
+  border-radius: 8px !important;
+}
+.home-card.expanded .home-details {
+  display: block !important;
+}
+
+/** Overlay Screen Styles */
+.overlay-screen {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  background: rgba(0,0,0,0.7) !important;
+  z-index: 10000 !important; /* Below popup but above everything else */
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transition: opacity 0.3s ease !important;
+}
+.overlay-screen.active {
+  opacity: 1 !important;
+  pointer-events: all !important;
+}
+
+/** Buttons within Expanded Card */
+.exit-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border: none;
+  background: #ff4444;
+  color: white;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-weight: bold;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.home-card.expanded .exit-button {
+  opacity: 1 !important;
+}
+.reach-agent {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 15px;
+  width: 100%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.home-card.expanded .reach-agent {
+  opacity: 1 !important;
+}
+
+/** Footer Styles */
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #333;
+  color: #fff;
+  font-size: 14px;
+  z-index: 10; /* Below popups */
+}
+.social-links a {
+  margin: 0 10px;
+}
+
+/** Slick Slider Customization */
+.slick-prev, .slick-next {
+  z-index: 1; /* Below all major elements */
+  width: 40px;
+  height: 40px;
+}
+.slick-prev:before, .slick-next:before {
+  font-size: 30px;
+  color: #333;
+}
+.slick-prev {
+  left: -50px;
+}
+.slick-next {
+  right: -50px;
+}
+
+/** Responsive Design */
+@media (max-width: 768px) {
+  .home-card.expanded {
+      max-width: 90% !important;
+  }
+  .home-card img {
+      height: 150px;
+  }
+}

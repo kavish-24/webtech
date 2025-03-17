@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Properties for Sale - EstateEdge</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style/stylees.css">
+</head>
+<body>
+    <header class="navbar">
+        <h1>EstateEdge</h1>
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="properties.html">Properties</a>
+            <a href="mortgage.html">Mortgage</a>
+            <a href="about.html">About Us</a>
+            <a href="property_details.html">Property Details</a>
+        </nav>
+    </header>
+
+    <div class="blur-overlay" id="blurOverlay"></div>
+
+    <div class="property-container">
+        <div class="property-card">
+            <img src="https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg" alt="Modern Apartment">
+            <div class="property-info">
+                <h4>Modern Apartment</h4>
+                <p>Price: $350,000</p>
+            </div>
+            <div class="details">
+                <p><strong>Rating:</strong> 4.5/5</p>
+                <p><strong>Location:</strong> Downtown, New York, NY</p>
+                <p><strong>Contact:</strong> <span class="contact-num"></span></p>
+                <p><strong>Size:</strong> 1,200 sq ft</p>
+                <p><strong>Bedrooms:</strong> 2 | <strong>Bathrooms:</strong> 2</p>
+                <p><strong>Amenities:</strong> Gym, Balcony, 24/7 Security</p>
+                <p>A spacious 2-bedroom apartment with city views.</p>
+                <button class="contact-btn">Contact Agent</button>
+            </div>
+            <button class="close-btn" onclick="closeCard(event)">X</button>
+        </div>
+
+        <div class="property-card">
+            <img src="https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg" alt="Luxury Beach House">
+            <div class="property-info">
+                <h4>Luxury Beach House</h4>
+                <p>Price: $2,500,000</p>
+            </div>
+            <div class="details">
+                <p><strong>Rating:</strong> 4.8/5</p>
+                <p><strong>Location:</strong> Malibu, CA</p>
+                <p><strong>Contact:</strong> <span class="contact-num"></span></p>
+                <p><strong>Size:</strong> 4,800 sq ft</p>
+                <p><strong>Bedrooms:</strong> 5 | <strong>Bathrooms:</strong> 4</p>
+                <p><strong>Amenities:</strong> Infinity Pool, Beach Access</p>
+                <p>A stunning beachfront property with luxury finishes.</p>
+                <button class="contact-btn">Contact Agent</button>
+            </div>
+            <button class="close-btn" onclick="closeCard(event)">X</button>
+        </div>
+
+        <div class="property-card">
+            <img src="https://images.pexels.com/photos/209296/pexels-photo-209296.jpeg" alt="Suburban Family Home">
+            <div class="property-info">
+                <h4>Suburban Family Home</h4>
+                <p>Price: $450,000</p>
+            </div>
+            <div class="details">
+                <p><strong>Rating:</strong> 4.2/5</p>
+                <p><strong>Location:</strong> Austin, TX</p>
+                <p><strong>Contact:</strong> <span class="contact-num"></span></p>
+                <p><strong>Size:</strong> 2,800 sq ft</p>
+                <p><strong>Bedrooms:</strong> 4 | <strong>Bathrooms:</strong> 3</p>
+                <p><strong>Amenities:</strong> Backyard, Garage</p>
+                <p>A family-friendly home in a quiet neighborhood.</p>
+                <button class="contact-btn">Contact Agent</button>
+            </div>
+            <button class="close-btn" onclick="closeCard(event)">X</button>
+        </div>
+
+        <div class="property-card">
+            <img src="https://images.pexels.com/photos/2134224/pexels-photo-2134224.jpeg" alt="Countryside Cottage">
+            <div class="property-info">
+                <h4>Countryside Cottage</h4>
+                <p>Price: $280,000</p>
+            </div>
+            <div class="details">
+                <p><strong>Rating:</strong> 4.6/5</p>
+                <p><strong>Location:</strong> Vermont, VT</p>
+                <p><strong>Contact:</strong> <span class="contact-num"></span></p>
+                <p><strong>Size:</strong> 1,800 sq ft</p>
+                <p><strong>Bedrooms:</strong> 3 | <strong>Bathrooms:</strong> 2</p>
+                <p><strong>Amenities:</strong> Fireplace, Garden</p>
+                <p>A charming cottage with mountain views.</p>
+                <button class="contact-btn">Contact Agent</button>
+            </div>
+            <button class="close-btn" onclick="closeCard(event)">X</button>
+        </div>
+
+        <div class="property-card">
+            <img src="https://images.pexels.com/photos/2631746/pexels-photo-2631746.jpeg" alt="Modern Loft">
+            <div class="property-info">
+                <h4>Modern Loft</h4>
+                <p>Price: $550,000</p>
+            </div>
+            <div class="details">
+                <p><strong>Rating:</strong> 4.7/5</p>
+                <p><strong>Location:</strong> Chicago, IL</p>
+                <p><strong>Contact:</strong> <span class="contact-num"></span></p>
+                <p><strong>Size:</strong> 2,000 sq ft</p>
+                <p><strong>Bedrooms:</strong> 3 | <strong>Bathrooms:</strong> 2</p>
+                <p><strong>Amenities:</strong> Rooftop Terrace, Exposed Brick</p>
+                <p>A stylish loft in a vibrant downtown area.</p>
+                <button class="contact-btn">Contact Agent</button>
+            </div>
+            <button class="close-btn">X</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 Real Estate Co. All rights reserved.</p>
+        <div class="social-links">
+            <a href="#"><img src="https://img.icons8.com/ios-filled/24/ffffff/facebook.png" alt="Facebook"></a>
+            <a href="#"><img src="https://img.icons8.com/ios-filled/24/ffffff/twitter.png" alt="Twitter"></a>
+            <a href="#"><img src="https://img.icons8.com/ios-filled/24/ffffff/instagram.png" alt="Instagram"></a>
+        </div>
+    </footer>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+    const cards = document.querySelectorAll(".property-card");
+    const blurOverlay = document.getElementById("blurOverlay");
+
+    cards.forEach(card => {
+        card.addEventListener("click", function(e) {
+            if (!this.classList.contains("expanded")) {
+                // Close any previously expanded cards
+                document.querySelectorAll(".property-card.expanded").forEach(c => {
+                    c.classList.remove("expanded");
+                });
+                
+                // Expand clicked card
+                this.classList.add("expanded");
+                document.body.classList.add("expanded");
+                blurOverlay.style.display = "block";
+            }
+        });
+    });
+
+    // Close functionality
+    document.querySelectorAll(".close-btn").forEach(button => {
+        button.addEventListener("click", function(e) {
+            e.stopPropagation();
+            this.closest(".property-card").classList.remove("expanded");
+            document.body.classList.remove("expanded");
+            blurOverlay.style.display = "none";
+        });
+    });
+
+    // Close when clicking outside card
+    blurOverlay.addEventListener("click", () => {
+        document.querySelectorAll(".property-card.expanded").forEach(card => {
+            card.classList.remove("expanded");
+        });
+        document.body.classList.remove("expanded");
+        blurOverlay.style.display = "none";
+    });
+
+    // Generate and assign random phone numbers
+    function generatePhoneNumber() {
+        let num = "555";
+        for (let i = 0; i < 7; i++) {
+            num += Math.floor(Math.random() * 10);
+        }
+        return num.slice(0, 3) + "-" + num.slice(3, 6) + "-" + num.slice(6);
+    }
+
+    document.querySelectorAll(".contact-num").forEach(span => {
+        span.textContent = generatePhoneNumber();
+    });
+});
+
+    </script>
+</body>
+</html>
