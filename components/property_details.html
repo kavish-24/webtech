@@ -5,22 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>List Your Property - EstateEdge</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-   <link rel="stylesheet" href="../style/styles2.css"> 
+    <link rel="stylesheet" href="../style/styles2.css"> 
 </head>
 <body>
-  <header class="navbar">
-    <h1>EstateEdge</h1>
-    <nav class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="properties.html">Properties</a>
-        <a href="mortgage.html">Mortgage</a>
-        <a href="about.html">About Us</a>
-        <a href="property_details.html">Property Details</a>
-    </nav>
-</header>
+    <header class="navbar">
+        <h1>EstateEdge</h1>
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="properties.html">Properties</a>
+            <a href="mortgage.html">Mortgage</a>
+            <a href="about.html">About Us</a>
+            <a href="property_details.html">Property Details</a>
+        </nav>
+    </header>
+    
     <div class="listing-container">
         <h2 class="form-title">List Your Property</h2>
-        <form id="propertyForm" action="/submit-property" method="POST" enctype="multipart/form-data">
+        <form id="propertyForm" action="/property-details" method="POST" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="propertyType">Property Type</label>
                 <select id="propertyType" name="propertyType" required>
@@ -48,7 +49,7 @@
 
             <div class="form-row">
                 <div class="form-group">
-                    <label for="price">Price ($)</label>
+                    <label for="price">Price </label>
                     <input type="number" id="price" name="price" required>
                 </div>
                 <div class="form-group">
@@ -118,12 +119,17 @@
             });
         });
 
-        // Form validation
+        // Form validation and success message
         document.getElementById('propertyForm').addEventListener('submit', function(e) {
             const price = document.getElementById('price').value;
             if (price < 100) {
                 alert('Please enter a valid price');
                 e.preventDefault();
+            } else {
+                e.preventDefault(); // Prevent actual submission for demo purposes
+                alert('Property added successfully!');
+                this.reset(); // Reset form after submission
+                previewContainer.innerHTML = ''; // Clear image preview
             }
         });
     </script>
